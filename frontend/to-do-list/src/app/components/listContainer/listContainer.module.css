@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+    /* width: 100vw; */
+}
+
+.listContainer {
+    display: flex;
+}
+
+.listLeft, .listCenter, .listRight {
+    padding: 20px;
+}
+
+.listLeft {
+    border-radius: 25px 0 0 25px;
+    background-color: #e6c300;
+}
+
+.listRight {
+    border-radius: 0 25px 25px 0;
+    background-color: #e6c300;
+}
+
+.listCenter {
+    background-color: #f0f0f0;
+}
+
+/* .button {
+    display: flex;
+} */
+
+.edit {
+    height: 32px;
+    font-size: 16px;
+    justify-self: center;
+    padding: 8px;
+    background-color: #09bd27;
+    margin: 0 7px 0 10px;
+    border-radius: 10px;
+}
+
+.trash {
+    height: 32px;
+    font-size: 16px;
+    justify-self: center;
+    padding: 8px;
+    background-color: #e62424;
+    border-radius: 10px;
+}
+
+.trash:hover, .edit:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #d3d3d3;
+}
+
+.h1 {
+    margin-bottom: 30px;
+    transform: translateY(-140px);
+    color: #ffd902;
+    text-shadow: 1px 1px 1.5px #000
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    transform: translateY(-78px);
+}
+
+.loginContainer h2 {
+    margin-bottom: 30px;
+    /* text-align: justify; */
+}
+
+.google, .github, .linkedin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.google {
+    background-color: #0011fc;
+    color: white;
+}
+
+.github {
+    background-color: #000;
+    color: white;
+}
+
+.linkedin {
+    background-color: #0077b5;
+    color: white;
+}
+
+.google:hover, .github:hover, .linkedin:hover {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.appContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    height: 18px;
+    margin-right: 10px;
+}
