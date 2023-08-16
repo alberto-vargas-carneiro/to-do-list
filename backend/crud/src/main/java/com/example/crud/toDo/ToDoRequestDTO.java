@@ -1,5 +1,5 @@
 package com.example.crud.toDo;
 
-public record ToDoRequestDTO(String title, String description) {
+public record ToDoRequestDTO(String content) {
     
 }

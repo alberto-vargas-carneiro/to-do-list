@@ -23,12 +23,11 @@ public class ToDo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String description;
+    private String content;
     private String createdat;
+    private String createdby;
 
     public ToDo(ToDoRequestDTO data) {
-        this.title = data.title();
-        this.description = data.description();
+        this.content = data.content();
     }
 }
