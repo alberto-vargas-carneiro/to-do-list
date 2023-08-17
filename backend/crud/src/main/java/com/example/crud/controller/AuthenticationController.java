@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.crud.config.TokenService;
 import com.example.crud.user.AuthenticationDTO;
+import com.example.crud.user.LoginResponseDTO;
 import com.example.crud.user.RegisterDTO;
 import com.example.crud.user.User;
 import com.example.crud.user.UserRepository;
@@ -25,15 +27,21 @@ public class AuthenticationController {
     
     @Autowired
     private AuthenticationManager authenticationManager;
+
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("auth/login")
     public ResponseEntity login(@RequestBody @Validated AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("auth/register")
