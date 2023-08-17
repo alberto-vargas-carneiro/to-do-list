@@ -22,7 +22,7 @@ public class ToDoController {
     @Autowired
     private ToDoRepository toDoRepository;
 
-    @PostMapping
+    @PostMapping("/create")
     public void createTask(@RequestBody ToDoRequestDTO data) {
         ToDo todo = new ToDo(data);
         Date currentDate = new Date();
