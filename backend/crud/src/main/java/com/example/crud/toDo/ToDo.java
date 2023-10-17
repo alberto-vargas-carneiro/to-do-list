@@ -29,5 +29,6 @@ public class ToDo {
 
     public ToDo(ToDoRequestDTO data) {
         this.content = data.content();
+        this.createdby = data.createdby();
     }
 }

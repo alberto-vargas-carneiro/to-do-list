@@ -1,5 +1,3 @@
-'use client'
-
 import style from './listContainer.module.css'
 import { BiEditAlt } from 'react-icons/bi'
 import { BsTrash3 } from 'react-icons/bs'

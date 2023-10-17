@@ -1,5 +1,4 @@
 package com.example.crud.user;
 
-public record RegisterDTO(String email, String password) {
-    
+public record RegisterDTO(String email, String password, String confirmPassword) {
 }
