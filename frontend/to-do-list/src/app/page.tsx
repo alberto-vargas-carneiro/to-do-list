@@ -5,6 +5,7 @@ import axios from 'axios';
 import { UserData } from './interface/userData'
 import styles from './page.module.css'
 import { useState } from 'react';
+import { redirect } from 'next/dist/server/api-utils';
 // import { useLogin } from './hooks/useUserData';
 
 export default function Home() {
@@ -15,6 +16,11 @@ export default function Home() {
   const [temCadastro, setTemCadastro] = useState(false);
   const [senha, setStylesSenha] = useState(styles.senha);
   const [emailOK, setStylesEmail] = useState(styles.emailOK);
+  const [usuarioExiste, setStylesUsuarioExiste] = useState(styles.usuarioExiste);
+  const [usuarioCriado, setStylesUsuarioCriado] = useState(styles.usuarioCriado);
+  const [avisoSenhaDiferente, setStylesAvisoSenhaDiferente] = useState(styles.avisoSenhaDiferente);
+  const [emailInvalido, setStylesEmailInvalido] = useState(styles.emailInvalido);
+  const [emailESenhaInvalidos, setStylesEmailESenhaInvalidos] = useState(styles.emailESenhaInvalidos);
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
@@ -44,27 +50,14 @@ export default function Home() {
     return data;
   }
 
-  const checkUser = async() => {
+  const checkUser = async () => {
     const userExists = await checkUserExists();
-      if (userExists) {
-        const criarElemento = () => {
-          let div = document.createElement('div')
-          div.id = 'usuarioExiste';
-          div.textContent = 'USUÁRIO EXISTENTE';
-          div.style.color = 'black';
-          div.style.backgroundColor = 'yellow';
-          div.style.padding = '10px';
-          div.style.borderRadius = '10px';
-          div.style.position = 'absolute';
-          div.style.top = '67%';
-          div.style.right = 'calc(50% - 95px)';
-          return div;
-        }
-        document.body.appendChild(criarElemento());
-      } else {
-        document.getElementById('usuarioExiste')?.remove();
-      }
+    if (userExists) {
+      setStylesUsuarioExiste(styles.usuarioExiste2);
+    } else {
+      setStylesUsuarioExiste(styles.usuarioExiste);
     }
+  }
 
   const handleSubmit = async () => {
     const response = await fetch('http://localhost:8080/auth/register', {
@@ -76,129 +69,101 @@ export default function Home() {
     });
 
     if (response.ok) {
-      const criarElemento = () => {
-        let div = document.createElement('div')
-        div.id = 'usuarioCriado';
-        div.textContent = 'USUÁRIO CRIADO COM SUCESSO';
-        div.style.color = 'white';
-        div.style.backgroundColor = 'green';
-        div.style.padding = '10px';
-        div.style.borderRadius = '10px';
-        div.style.position = 'absolute';
-        div.style.top = '67%';
-        div.style.right = 'calc(50% - 142px)';
-        return div;
-      }
-      document.body.appendChild(criarElemento());
+      setStylesUsuarioCriado(styles.usuarioCriado2);
+      setStylesAvisoSenhaDiferente(styles.avisoSenhaDiferente);
+      setStylesEmailInvalido(styles.emailInvalido);
+      setStylesEmailESenhaInvalidos(styles.emailESenhaInvalidos);
+      setStylesEmail(styles.emailOK);
+      setStylesSenha(styles.senha);
       setTimeout(() => {
-        document.getElementById('usuarioCriado')?.remove();
+        setStylesUsuarioCriado(styles.usuarioCriado);
+        setTimeout(() => {
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+          setTemCadastro(!temCadastro);
+        }, 250);
       }, 3000);
 
       return
     } else {
       const regex = /@.*\.com/;
-      if (password !== confirmPassword && regex.test(email)) { // arrumar essa bosta de div, colocar lá embaixo no lugar que ela deve ficar
-        const criarElemento = () => {
-          let div = document.createElement('div')
-          div.id = 'senhaDiferente';
-          div.textContent = 'SENHAS DIFERENTES';
-          div.style.color = 'white';
-          div.style.backgroundColor = 'red';
-          div.style.padding = '10px';
-          div.style.borderRadius = '10px';
-          div.style.position = 'absolute';
-          div.style.top = '67%';
-          div.style.right = 'calc(50% - 95px)';
-          return div;
-        }
-
-        const elemento = criarElemento()
-        document.body.appendChild(elemento);
+      if (password !== confirmPassword && regex.test(email)) {
+        setStylesAvisoSenhaDiferente(styles.avisoSenhaDiferente2);
         setStylesSenha(styles.senhaDiferente);
       } else {
         setStylesSenha(styles.senha);
-        document.getElementById('senhaDiferente')?.remove();
+        setStylesAvisoSenhaDiferente(styles.avisoSenhaDiferente);
       }
 
       if (!regex.test(email) && password === confirmPassword) {
-        const criarElemento = () => {
-          let div = document.createElement('div')
-          div.id = 'emailInvalido';
-          div.textContent = 'EMAIL INVÁLIDO';
-          div.style.color = 'white';
-          div.style.backgroundColor = 'red';
-          div.style.padding = '10px';
-          div.style.borderRadius = '10px';
-          div.style.position = 'absolute';
-          div.style.top = '67%';
-          div.style.right = 'calc(50% - 73px)';
-          return div;
-        }
-
         setStylesEmail(styles.emailDiferente);
-        document.body.appendChild(criarElemento());
-
+        setStylesEmailInvalido(styles.emailInvalido2);
       } else {
-        document.getElementById('emailInvalido')?.remove();
         setStylesEmail(styles.emailOK);
+        setStylesEmailInvalido(styles.emailInvalido);
       }
 
       if (!regex.test(email) && password !== confirmPassword) {
-        const criarElemento = () => {
-          let div = document.createElement('div')
-          div.id = 'emailESenhaInvalidos';
-          div.textContent = 'EMAIL E SENHA INVÁLIDOS';
-          div.style.color = 'white';
-          div.style.backgroundColor = 'red';
-          div.style.padding = '10px';
-          div.style.borderRadius = '10px';
-          div.style.position = 'absolute';
-          div.style.top = '67%';
-          div.style.right = 'calc(50% - 115px)';
-          return div;
-        }
-
+        setStylesEmailESenhaInvalidos(styles.emailESenhaInvalidos2);
         setStylesEmail(styles.emailDiferente);
         setStylesSenha(styles.senhaDiferente);
-        document.body.appendChild(criarElemento());
+      } else if (regex.test(email) && password !== confirmPassword) {
+        setStylesEmailESenhaInvalidos(styles.emailESenhaInvalidos);
+        setStylesEmail(styles.emailOK);
+      } else if (!regex.test(email) && password === confirmPassword) {
+        setStylesEmailESenhaInvalidos(styles.emailESenhaInvalidos);
+        setStylesSenha(styles.senha);
+      } else {
+        setStylesEmailESenhaInvalidos(styles.emailESenhaInvalidos);
+        setStylesEmail(styles.emailOK);
+        setStylesSenha(styles.senha);
       }
     }
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.h1}>Todas suas tarefas em um só lugar</h1>
-      <div className={styles.loginContainer}>
-        {temCadastro ?
-          <>
-            <h2>Por favor, faça login abaixo para criar e editar suas tarefas</h2>
-            <input className={styles.emailOK} name='email' type="email" placeholder='E-mail'
-              value={email} onChange={handleEmailChange} />
-            <input className={styles.senha} name='password' type="password" placeholder='Senha'
-              value={password} onChange={handlePasswordChange} />
-            <button className={styles.loginButton} >ENTRAR</button>
-          </>
-          :
-          <>
-            <h2>Por favor, cadastre-se abaixo para criar e editar suas tarefas</h2>
-            <input className={emailOK} name='email' type="email" placeholder='E-mail'
-              value={email} onChange={handleEmailChange} onBlur={checkUser} />
-            <input className={senha} name='password' type="password" placeholder='Senha'
-              value={password} onChange={handlePasswordChange} />
-            <input className={senha} name='confirmPassword' type="password" placeholder='Confirmar Senha'
-              value={confirmPassword} onChange={handleConfirmPasswordChange} />
-            <button className={styles.loginButton} onClick={handleSubmit}>CADASTRAR</button>
-          </>
-        }
-
-
-        {temCadastro ?
-          <span className={styles.jaPossui} onClick={handleTemCadastro}>Não tem cadastro? Registre-se aqui!</span>
-          :
-          <span className={styles.jaPossui} onClick={handleTemCadastro}>Já possui cadastro? Faça o login</span>
-        }
+    <>
+      <div className={styles.title}>
+        <h1 className={styles.h1}>Todas suas tarefas em um só lugar</h1>
       </div>
-      <div id='usuarioExiste'>ghfsdgs</div>
-    </div >
+      <div className={styles.container}>
+        <div className={styles.loginContainer}>
+          {temCadastro ?
+            <>
+              <h2>Por favor, faça login abaixo para criar e editar suas tarefas</h2>
+              <input className={styles.emailOK} name='email' type="email" placeholder='E-mail'
+                value={email} onChange={handleEmailChange} />
+              <input className={styles.senha} name='password' type="password" placeholder='Senha'
+                value={password} onChange={handlePasswordChange} />
+              <button className={styles.loginButton} >ENTRAR</button>
+            </>
+            :
+            <>
+              <h2>Por favor, cadastre-se abaixo para criar e editar suas tarefas</h2>
+              <input className={emailOK} name='email' type="email" placeholder='E-mail'
+                value={email} onChange={handleEmailChange} onBlur={checkUser} />
+              <input className={senha} name='password' type="password" placeholder='Senha'
+                value={password} onChange={handlePasswordChange} />
+              <input className={senha} name='confirmPassword' type="password" placeholder='Confirmar Senha'
+                value={confirmPassword} onChange={handleConfirmPasswordChange} />
+              <button className={styles.loginButton} onClick={handleSubmit}>CADASTRAR</button>
+            </>
+          }
+
+
+          {temCadastro ?
+            <span className={styles.jaPossui} onClick={handleTemCadastro}>Não tem cadastro? Registre-se aqui!</span>
+            :
+            <span className={styles.jaPossui} onClick={handleTemCadastro}>Já possui cadastro? Faça o login</span>
+          }
+        </div>
+        <div className={usuarioExiste}>USUÁRIO EXISTENTE</div>
+        <div className={usuarioCriado}>USUÁRIO CRIADO COM SUCESSO</div>
+        <div className={avisoSenhaDiferente}>SENHAS DIFERENTES</div>
+        <div className={emailInvalido}>EMAIL INVÁLIDO</div>
+        <div className={emailESenhaInvalidos}>EMAIL E SENHA INVÁLIDOS</div>
+      </div >
+    </>
   )
 }

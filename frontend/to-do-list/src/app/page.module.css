@@ -7,11 +7,18 @@
     background-color: #d3d3d3;
 }
 
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .h1 {
     margin-bottom: 30px;
-    transform: translateY(-140px);
+    transform: translateY(120px);
     color: #ffd902;
-    text-shadow: 1px 1px 1.5px #000
+    text-shadow: 1px 1px 1.5px #000;
+    position: absolute;
 }
 
 .loginContainer {
@@ -21,7 +28,7 @@
     border-radius: 10px;
     padding: 20px;
     width: 400px;
-    transform: translateY(-78px);
+    /* transform: translateY(-78px); */
 }
 
 .loginContainer h2 {
@@ -34,19 +41,12 @@
     padding: 10px;
 }
 
-.senhaDiferente {
+.senhaDiferente, .emailDiferente {
     border: 1px solid #ff0000;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 10px;
     
-}
-
-.emailDiferente {
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
 }
 
 .loginButton {
@@ -69,4 +69,46 @@
     cursor: pointer;
     text-decoration: underline;
     color: #007bffcc;
+}
+
+.usuarioExiste {
+    display: none;
+}
+
+.usuarioExiste2 {
+    background-color: #fbff02;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.usuarioCriado {
+    display: none;
+}
+
+.usuarioCriado2 {
+    background-color: #02ff0c;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.avisoSenhaDiferente {
+    display: none;
+}
+
+.emailInvalido {
+    display: none;
+}
+
+.emailESenhaInvalidos {
+    display: none;
+}
+
+.avisoSenhaDiferente2, .emailInvalido2, .emailESenhaInvalidos2 {
+    background-color: #ff0000;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #fff;
 }
