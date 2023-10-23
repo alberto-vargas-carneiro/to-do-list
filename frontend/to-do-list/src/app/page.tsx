@@ -1,26 +1,26 @@
 'use client'
 
-import axios from 'axios';
-// import useUserData from './hooks/useUserData'
-import { UserData } from './interface/userData'
+import Cookies from 'js-cookie';
 import styles from './page.module.css'
-import { useState } from 'react';
-import { redirect } from 'next/dist/server/api-utils';
-// import { useLogin } from './hooks/useUserData';
+import { useState, useContext, useEffect } from 'react';
+// import { Logado } from './context/context';
+import { log } from 'console';
 
 export default function Home() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [temCadastro, setTemCadastro] = useState(false);
+  const [temCadastro, setTemCadastro] = useState(true);
   const [senha, setStylesSenha] = useState(styles.senha);
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [emailOK, setStylesEmail] = useState(styles.emailOK);
   const [usuarioExiste, setStylesUsuarioExiste] = useState(styles.usuarioExiste);
   const [usuarioCriado, setStylesUsuarioCriado] = useState(styles.usuarioCriado);
-  const [avisoSenhaDiferente, setStylesAvisoSenhaDiferente] = useState(styles.avisoSenhaDiferente);
   const [emailInvalido, setStylesEmailInvalido] = useState(styles.emailInvalido);
+  const [avisoSenhaDiferente, setStylesAvisoSenhaDiferente] = useState(styles.avisoSenhaDiferente);
   const [emailESenhaInvalidos, setStylesEmailESenhaInvalidos] = useState(styles.emailESenhaInvalidos);
+  const [emailOuSenhaInvalidos, setStylesEmailOuSenhaInvalidos] = useState(styles.emailOuSenhaInvalidos);
+  const [ logado, setLogado ] = useState(false);
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
@@ -56,6 +56,35 @@ export default function Home() {
       setStylesUsuarioExiste(styles.usuarioExiste2);
     } else {
       setStylesUsuarioExiste(styles.usuarioExiste);
+    }
+  }
+
+  useEffect(() => {
+    if (logado) {
+      localStorage.setItem('logado', JSON.stringify(logado));
+      window.location.href = '/list';
+    }
+  }, [logado]);
+
+
+  const handleLogin = async () => {
+    const response = await fetch('http://localhost:8080/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setLogado(true);
+      localStorage.setItem('userEmail', JSON.stringify(data.email));
+      console.log(data.email);
+      
+    } else {
+      setStylesEmailOuSenhaInvalidos(styles.emailOuSenhaInvalidos2);
     }
   }
 
@@ -136,7 +165,7 @@ export default function Home() {
                 value={email} onChange={handleEmailChange} />
               <input className={styles.senha} name='password' type="password" placeholder='Senha'
                 value={password} onChange={handlePasswordChange} />
-              <button className={styles.loginButton} >ENTRAR</button>
+              <button className={styles.loginButton} onClick={handleLogin} >ENTRAR</button>
             </>
             :
             <>
@@ -163,6 +192,7 @@ export default function Home() {
         <div className={avisoSenhaDiferente}>SENHAS DIFERENTES</div>
         <div className={emailInvalido}>EMAIL INVÁLIDO</div>
         <div className={emailESenhaInvalidos}>EMAIL E SENHA INVÁLIDOS</div>
+        <div className={emailOuSenhaInvalidos}>EMAIL E/OU SENHA INVÁLIDOS</div>
       </div >
     </>
   )
