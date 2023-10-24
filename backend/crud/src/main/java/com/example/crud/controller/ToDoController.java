@@ -23,7 +23,7 @@ public class ToDoController {
     @Autowired
     private ToDoRepository toDoRepository;
 
-    // @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @PostMapping("/create")
     public void createTask(@RequestBody ToDoRequestDTO data) {
         ToDo todo = new ToDo(data);

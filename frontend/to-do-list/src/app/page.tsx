@@ -1,10 +1,7 @@
 'use client'
 
-import Cookies from 'js-cookie';
 import styles from './page.module.css'
-import { useState, useContext, useEffect } from 'react';
-// import { Logado } from './context/context';
-import { log } from 'console';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
 
@@ -81,8 +78,7 @@ export default function Home() {
     if (response.ok) {
       setLogado(true);
       localStorage.setItem('userEmail', JSON.stringify(data.email));
-      console.log(data.email);
-      
+      localStorage.setItem('token', JSON.stringify(data.token))
     } else {
       setStylesEmailOuSenhaInvalidos(styles.emailOuSenhaInvalidos2);
     }
