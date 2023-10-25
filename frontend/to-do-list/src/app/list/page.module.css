@@ -6,3 +6,15 @@
     height: calc(100vh - 120px);
     background-color: #d3d3d3; 
 }
+
+.botao {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.input {
+    border-radius: 10px;
+    margin: 10px;
+}

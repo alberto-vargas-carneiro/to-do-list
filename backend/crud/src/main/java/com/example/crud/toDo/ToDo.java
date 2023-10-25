@@ -27,8 +27,7 @@ public class ToDo {
     private String createdat;
     private String createdby;
 
-    public ToDo(ToDoRequestDTO data) {
-        this.content = data.content();
-        this.createdby = data.createdby();
+    public ToDo(String content) {
+        this.content = content;
     }
 }
