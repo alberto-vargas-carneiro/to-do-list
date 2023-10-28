@@ -5,12 +5,14 @@ import ListContainer from '../components/listContainer/listContainer'
 import useListData from '../hooks/useListData'
 import React, { useState, useEffect } from 'react'
 
+
 export default function Page() {
     const logado = JSON.parse(localStorage.getItem('logado') || 'false');
     const token = JSON.parse(localStorage.getItem('token') || 'false');
     const email = JSON.parse(localStorage.getItem('userEmail') || 'false');
     const [task, setTask] = useState(false);
     const [content, setContent] = useState('');
+    const username = email.toString().split('@')[0];
 
     const handleContent = (e: any) => {
         setContent(e.target.value);
@@ -48,9 +50,11 @@ export default function Page() {
     return (
         <>
             <div className={style.container}>
-                <div>{email}</div>
-                {data?.map(listData => <ListContainer key={data.indexOf(listData) + 1} content={listData.content}
-                    date={listData.createdat} id={data.indexOf(listData) + 1} />)}
+                <div className={style.email}>Tarefas de {username}</div>
+
+                {data?.map((listData, index) => <ListContainer x={listData.id} key={data.indexOf(listData) + 1} content={listData.content}
+                    date={listData.createdat} num={index + 1} />)}
+
                 <button className={style.botao} onClick={handleTask}>ADICIONAR</button>
                 {task &&
                     <>

@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +37,6 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
-    @CrossOrigin(origins = "*")
     @PostMapping("auth/login")
     public ResponseEntity login(@RequestBody @Validated AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
@@ -49,7 +47,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDTO(token, data.email()));
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("auth/register")
     public ResponseEntity register(@RequestBody @Validated RegisterDTO data) {
         if (userRepository.findByEmail(data.email()) != null) {
@@ -69,7 +66,6 @@ public class AuthenticationController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("auth/user-exists")
     public ResponseEntity<Boolean> userExists(@RequestBody RegisterDTO data) {
         UserDetails user = userRepository.findByEmail(data.email());
@@ -77,7 +73,6 @@ public class AuthenticationController {
         return new ResponseEntity<>(userExists, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("users")
     public List<User> getUsers() {
         List<User> users = userRepository.findAll();

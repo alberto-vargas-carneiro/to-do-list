@@ -17,7 +17,7 @@ export default function Home() {
   const [avisoSenhaDiferente, setStylesAvisoSenhaDiferente] = useState(styles.avisoSenhaDiferente);
   const [emailESenhaInvalidos, setStylesEmailESenhaInvalidos] = useState(styles.emailESenhaInvalidos);
   const [emailOuSenhaInvalidos, setStylesEmailOuSenhaInvalidos] = useState(styles.emailOuSenhaInvalidos);
-  const [ logado, setLogado ] = useState(false);
+  const [logado, setLogado] = useState(false);
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
@@ -33,6 +33,12 @@ export default function Home() {
 
   const handleTemCadastro = () => {
     setTemCadastro(!temCadastro);
+    setStylesAvisoSenhaDiferente(styles.avisoSenhaDiferente);
+    setStylesEmailInvalido(styles.emailInvalido);
+    setStylesEmailESenhaInvalidos(styles.emailESenhaInvalidos);
+    setStylesEmail(styles.emailOK);
+    setStylesSenha(styles.senha);
+    setStylesUsuarioExiste(styles.usuarioExiste)
   };
 
   const checkUserExists = async () => {
@@ -161,7 +167,7 @@ export default function Home() {
                 value={email} onChange={handleEmailChange} />
               <input className={styles.senha} name='password' type="password" placeholder='Senha'
                 value={password} onChange={handlePasswordChange} />
-              <button className={styles.loginButton} onClick={handleLogin} >ENTRAR</button>
+              <button className={styles.loginButton} onClick={handleLogin}>LOGIN</button>
             </>
             :
             <>
