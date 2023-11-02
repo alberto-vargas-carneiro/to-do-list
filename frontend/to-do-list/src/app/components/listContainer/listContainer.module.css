@@ -25,7 +25,8 @@
 .listLeft {
     border-radius: 25px 0 0 25px;
     background-color: #ffd902;
-    width: 4rem;
+    width: 5rem;
+    text-align: center;
 }
 
 .listRight {

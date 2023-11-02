@@ -104,3 +104,24 @@
     margin-top: 20px;
     color: #fff;
 }
+
+@media screen and (max-width: 532px) {
+    .h1 {
+        text-align: center;
+        width: 75%;
+    }
+    
+    .loginContainer {
+        width: 80%;
+    }
+
+    .loginContainer h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .jaPossui {
+        text-align: center;
+        width: 70%;
+    }
+}
