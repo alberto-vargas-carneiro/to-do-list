@@ -4,6 +4,7 @@ import style from './page.module.css'
 import ListContainer from '../components/listContainer/listContainer'
 import useListData from '../hooks/useListData'
 import React, { useState, useEffect } from 'react'
+import { BsPlusCircleFill } from 'react-icons/bs'
 
 
 export default function Page() {
@@ -50,12 +51,12 @@ export default function Page() {
     return (
         <>
             <div className={style.container}>
-                <div className={style.email}>Tarefas de {username}</div>
+                <div className={style.username}>Tarefas de {username}</div>
 
                 {data?.map((listData, index) => <ListContainer x={listData.id} key={data.indexOf(listData) + 1} content={listData.content}
                     date={listData.createdat} num={index + 1} />)}
 
-                <button className={style.botao} onClick={handleTask}>ADICIONAR</button>
+                <button className={style.addButton} onClick={handleTask}><BsPlusCircleFill /></button>
                 {task &&
                     <>
                         <input className={style.input} value={content} name='content' onChange={handleContent} type="text" />

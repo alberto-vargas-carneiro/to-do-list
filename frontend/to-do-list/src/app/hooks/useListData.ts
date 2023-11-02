@@ -2,12 +2,11 @@ import axios, { AxiosResponse } from "axios"
 import { ListData } from "../interface/listData"
 import { useQuery } from "react-query"
 
-const API_URL = 'http://localhost:8080'
 const token = JSON.parse(localStorage.getItem('token') || 'false');
 const email = JSON.parse(localStorage.getItem('userEmail') || 'false');
 
 const fetchData = async (): Promise<ListData[]> => {
-    const response: AxiosResponse<ListData[]> = await axios.get(`${API_URL}/todo`, {
+    const response: AxiosResponse<ListData[]> = await axios.get('http://localhost:8080/todo', {
         headers: {
             Authorization: `Bearer ${token}`
         },

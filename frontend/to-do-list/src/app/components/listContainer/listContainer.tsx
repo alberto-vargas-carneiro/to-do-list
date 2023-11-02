@@ -32,16 +32,18 @@ export default function ListContainer(props: ListContainerProps) {
     }
 
     return (
-        <div className={style.container} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            <div className={style.listContainer}>
-                <div className={style.listLeft}>{props.num.toString()}</div>
-                <div className={style.listCenter}>{props.content}</div>
-                <div className={style.listRight}>{props.date}</div>
-            </div>
+        <div className={style.container_container}>
+            <div className={style.container} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+                <div className={style.listContainer}>
+                    <div className={style.listLeft}>{props.num.toString()}</div>
+                    <div className={style.listCenter}>{props.content}</div>
+                    <div className={style.listRight}>{props.date}</div>
+                </div>
 
-            {isHovered &&
-                <button className={style.trash} id={props.x.toString()} onClick={handleDelete}><BsTrash3 /></button>
-            }
+                {isHovered &&
+                    <button className={style.trash} id={props.x.toString()} onClick={handleDelete}><BsTrash3 /></button>
+                }
+            </div>
         </div>
     )
 }

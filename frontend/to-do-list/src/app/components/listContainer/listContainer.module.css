@@ -1,12 +1,21 @@
+.container_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2px;
+    width: 75vw;
 }
 
 .listContainer {
     display: flex;
+    font-size: 1.2rem;
+    width: 75vw;
 }
 
 .listLeft, .listCenter, .listRight {
@@ -15,16 +24,20 @@
 
 .listLeft {
     border-radius: 25px 0 0 25px;
-    background-color: #e6c300;
+    background-color: #ffd902;
+    width: 4rem;
 }
 
 .listRight {
     border-radius: 0 25px 25px 0;
-    background-color: #e6c300;
+    background-color: #ffd902;
 }
 
 .listCenter {
     background-color: #f0f0f0;
+    width: 100%;
+    text-align: center;
+    word-break: break-all;
 }
 
 .trash {
@@ -35,6 +48,7 @@
     background-color: #e62424;
     border-radius: 10px;
     margin-left: 10px;
+    right: 0;
 }
 
 .trash:hover {
