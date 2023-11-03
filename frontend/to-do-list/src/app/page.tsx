@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 export default function Home() {
 
   const [email, setEmail] = useState('');
+  const [logado, setLogado] = useState(false);
   const [password, setPassword] = useState('');
   const [temCadastro, setTemCadastro] = useState(true);
   const [senha, setStylesSenha] = useState(styles.senha);
@@ -17,7 +18,6 @@ export default function Home() {
   const [avisoSenhaDiferente, setStylesAvisoSenhaDiferente] = useState(styles.avisoSenhaDiferente);
   const [emailESenhaInvalidos, setStylesEmailESenhaInvalidos] = useState(styles.emailESenhaInvalidos);
   const [emailOuSenhaInvalidos, setStylesEmailOuSenhaInvalidos] = useState(styles.emailOuSenhaInvalidos);
-  const [logado, setLogado] = useState(false);
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);

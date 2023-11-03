@@ -25,6 +25,7 @@ export default function ListContainer(props: ListContainerProps) {
             }
         })
         if (response.status === 200) {
+            window.location.reload();
             return;
         } else {
             console.log('num deu');

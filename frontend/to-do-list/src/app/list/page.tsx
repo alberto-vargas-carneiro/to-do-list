@@ -33,10 +33,10 @@ export default function Page() {
             body: JSON.stringify({ content, email }),
         });
         if (response.ok) {
+            window.location.reload();
             return
         } else {
             console.log('num deu');
-
         }
     }
 
