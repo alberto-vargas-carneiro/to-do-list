@@ -4,8 +4,7 @@ Este projeto é uma aplicação full stack de uma lista de tarefas, onde as tare
 
 ## Funcionalidades
 
-- Adição, edição e remoção de tarefas.
-- Marcação de tarefas como concluídas.
+- Adição e remoção de tarefas.
 - Armazenamento seguro de tarefas associadas a contas de usuário.
 
 ## Tecnologias Utilizadas
