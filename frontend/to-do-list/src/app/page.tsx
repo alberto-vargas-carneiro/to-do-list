@@ -65,7 +65,7 @@ export default function Home() {
   useEffect(() => {
     if (logado) {
       localStorage.setItem('logado', JSON.stringify(logado));
-      window.location.href = '/list';
+      window.location.href = 'https://to-do-list-seven-azure-23.vercel.app/list';
     }
   }, [logado]);
 
