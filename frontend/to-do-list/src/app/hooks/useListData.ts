@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from "axios"
 import { ListData } from "../interface/listData"
 import { useQuery } from "react-query"
 
-const token = JSON.parse(localStorage.getItem('token') || 'false');
-const email = JSON.parse(localStorage.getItem('userEmail') || 'false');
+const token = typeof localStorage !== "undefined" ? JSON.parse(localStorage.getItem('token') || 'false') : null;
+const email = typeof localStorage !== "undefined" ? JSON.parse(localStorage.getItem('userEmail') || 'false') : null;
 
 const fetchData = async (): Promise<ListData[]> => {
     const response: AxiosResponse<ListData[]> = await axios.get('http://localhost:8080/todo', {

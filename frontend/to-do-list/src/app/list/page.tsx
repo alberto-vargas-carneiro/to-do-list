@@ -8,12 +8,12 @@ import { BsPlusCircleFill } from 'react-icons/bs'
 
 
 export default function Page() {
-    const logado = JSON.parse(localStorage.getItem('logado') || 'false');
-    const token = JSON.parse(localStorage.getItem('token') || 'false');
-    const email = JSON.parse(localStorage.getItem('userEmail') || 'false');
+    const [logado, setLogado] = useState(false);
+    const [token, setToken] = useState(false);
+    const [email, setEmail] = useState(false);
     const [task, setTask] = useState(false);
     const [content, setContent] = useState('');
-    const username = email.toString().split('@')[0];
+    const [username, setUsername] = useState('');
 
     const handleContent = (e: any) => {
         setContent(e.target.value);
@@ -22,7 +22,7 @@ export default function Page() {
     const handleTask = () => {
         setTask(!task);
     }
-
+    
     const handleAddTask = async () => {
         const response = await fetch('http://localhost:8080/todo/create', {
             method: 'POST',
@@ -39,9 +39,17 @@ export default function Page() {
             console.log('num deu');
         }
     }
-
+    
     useEffect(() => {
-        if (logado == false) {
+        const logadoValue = JSON.parse(localStorage.getItem('logado') || 'false');
+        const tokenValue= JSON.parse(localStorage.getItem('token') || 'false');
+        const emailValue= JSON.parse(localStorage.getItem('userEmail') || 'false');
+        setLogado(logadoValue);
+        setToken(tokenValue);
+        setEmail(emailValue);
+        setUsername(emailValue.toString().split('@')[0]);
+        
+        if (logadoValue == false) {
             window.location.href = '/'
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
