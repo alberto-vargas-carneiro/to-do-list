@@ -1,6 +1,6 @@
 CREATE TABLE todo (
     id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    createdby TEXT,
+    title TEXT NOT NULL,
+    description TEXT,
     createdAt TEXT NOT NULL
 );
