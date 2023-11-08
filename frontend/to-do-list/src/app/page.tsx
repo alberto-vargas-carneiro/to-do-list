@@ -42,7 +42,7 @@ export default function Home() {
   };
 
   const checkUserExists = async () => {
-    const response = await fetch('http://localhost:8080/auth/user-exists', {
+    const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/auth/user-exists', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default function Home() {
 
 
   const handleLogin = async () => {
-    const response = await fetch('http://localhost:8080/auth/login', {
+    const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export default function Home() {
   }
 
   const handleSubmit = async () => {
-    const response = await fetch('http://localhost:8080/auth/register', {
+    const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

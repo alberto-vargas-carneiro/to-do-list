@@ -6,7 +6,7 @@ const token = typeof localStorage !== "undefined" ? JSON.parse(localStorage.getI
 const email = typeof localStorage !== "undefined" ? JSON.parse(localStorage.getItem('userEmail') || 'false') : null;
 
 const fetchData = async (): Promise<ListData[]> => {
-    const response: AxiosResponse<ListData[]> = await axios.get('http://localhost:8080/todo', {
+    const response: AxiosResponse<ListData[]> = await axios.get('https://to-do-test-404512.rj.r.appspot.com/todo', {
         headers: {
             Authorization: `Bearer ${token}`
         },

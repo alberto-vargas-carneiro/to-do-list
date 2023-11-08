@@ -16,7 +16,7 @@ export default function ListContainer(props: ListContainerProps) {
     const token = JSON.parse(localStorage.getItem('token') || 'false');
 
     const handleDelete = async () => {
-        const response: AxiosResponse = await axios.delete('http://localhost:8080/todo/delete', {
+        const response: AxiosResponse = await axios.delete('https://to-do-test-404512.rj.r.appspot.com/todo/delete', {
             headers: {
                 Authorization: `Bearer ${token}`
             },
