@@ -9,3 +9,9 @@
     background-color: #313131;
     text-shadow: 1px 1px 1.5px #000;
 }
+
+@media screen and (max-height: 450px) {
+    .header {
+        height: 42px;
+    }
+}

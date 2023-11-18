@@ -125,3 +125,30 @@
         width: 70%;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .h1 {
+        transform: translateY(100px);
+    }
+    
+    .loginContainer {
+        transform: translateY(70px);
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .h1 {
+        display: none;
+    }
+    
+    .container {
+        height: calc(100vh - 84px);
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .loginContainer {
+        padding: 5px;
+        z-index: 1;
+    }
+}
