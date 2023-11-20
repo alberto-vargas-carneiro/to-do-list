@@ -136,7 +136,7 @@
     }
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-height: 509px) {
     .h1 {
         display: none;
     }
@@ -150,5 +150,15 @@
     .loginContainer {
         padding: 5px;
         z-index: 1;
+    }
+}
+
+@media screen and (min-height: 510px) and (max-height: 720px) {
+    .h1 {
+        transform: translateY(60px);
+    }
+
+    .loginContainer {
+        transform: translateY(40px);
     }
 }
