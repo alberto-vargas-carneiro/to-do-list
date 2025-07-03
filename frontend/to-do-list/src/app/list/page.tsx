@@ -24,7 +24,7 @@ export default function Page() {
     }
     
     const handleAddTask = async () => {
-        const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/todo/create', {
+        const response = await fetch('http://localhost:8080/todo/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

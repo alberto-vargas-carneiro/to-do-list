@@ -42,7 +42,7 @@ export default function Home() {
   };
 
   const checkUserExists = async () => {
-    const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/auth/user-exists', {
+    const response = await fetch('http://localhost:8080/auth/user-exists', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,13 +65,13 @@ export default function Home() {
   useEffect(() => {
     if (logado) {
       localStorage.setItem('logado', JSON.stringify(logado));
-      window.location.href = 'https://to-do-list-seven-azure-23.vercel.app/list';
+      window.location.href = 'http://localhost:3000/list';
     }
   }, [logado]);
 
 
   const handleLogin = async () => {
-    const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/auth/login', {
+    const response = await fetch('http://localhost:8080/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export default function Home() {
   }
 
   const handleSubmit = async () => {
-    const response = await fetch('https://to-do-test-404512.rj.r.appspot.com/auth/register', {
+    const response = await fetch('http://localhost:8080/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
