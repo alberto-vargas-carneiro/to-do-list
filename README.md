@@ -16,11 +16,11 @@ Este projeto é uma aplicação full stack de uma lista de tarefas, onde as tare
 ## Pré-requisitos para rodar o projeto
 É necessário ter os seguintes programas instalados na máquina: (versões utilizadas nesse projeto)
 
-Git
-Node.js (22.15.1)
-Java (21)
-Maven (3.9.9)
-PostgreSQL (17.5)
+- Git
+- Node.js (22.15.1)
+- Java (21)
+- Maven (3.9.9)
+- PostgreSQL (17.5)
 
 ## Depois de clonar o projeto
 Frontend:
@@ -30,9 +30,9 @@ Frontend:
 - Digitar "npm run dev" para iniciar o programa (será executado na porta http://localhost:3000)
 
 PostgreSQL:
-- Inicie o servidor do PostgreSQL
-- Garanta que o servidor seja iniciado na porta 5432 ou então altere o arquivo application.properties na pasta do backend para corresponder a sua escolha, bem como as opções de username e password para acesso ao servidor
-- Crie um banco de dados chamado "todolist_db"
+- Iniciar o servidor do PostgreSQL
+- Garantir que o servidor seja iniciado na porta 5432 ou então altere o arquivo application.properties na pasta do backend para corresponder a sua escolha, bem como as opções de username e password para acesso ao servidor
+- Criar um banco de dados chamado "todolist_db"
   
 Backend:
 
